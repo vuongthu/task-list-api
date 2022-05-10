@@ -20,7 +20,15 @@ def create_one_task():
 
 @task_bp.route("", methods=["GET"])
 def get_all_tasks():
-    tasks = Task.query.all()
+
+    sort_title_query = request.args.get("sort")
+    if sort_title_query == "asc":
+        tasks = Task.query.order_by(Task.title.asc()).all()
+    elif sort_title_query == "desc":
+        tasks = Task.query.order_by(Task.title.desc()).all()
+    else:
+        tasks = Task.query.all()
+        
 
     task_list = [task.to_dict() for task in tasks]
 
@@ -54,3 +62,4 @@ def delete_task(task_id):
     db.session.commit()
 
     return success_msg(f'Task {task.task_id} "{task.title}" successfully deleted', 200)
+
