@@ -1,10 +1,12 @@
 from app import db
 from app.models.task import Task
+from app.slack import SlackBot
 from .task_helper_routes import make_task_safely, replace_task_safely, get_task_by_id
 from .routes_helper import success_msg
 from flask import Blueprint, jsonify, abort, make_response, request
 
 task_bp = Blueprint("task_bp", __name__, url_prefix="/tasks")
+slack_bot = SlackBot()
 
 @task_bp.route("", methods=["POST"])
 def create_one_task():
@@ -61,6 +63,8 @@ def update_task_complete(task_id):
     task.mark_completed()
 
     db.session.commit()
+
+    slack_bot.send_notification(f"Someone just completed the task {task.title}")
 
     return jsonify({"task": task.to_dict()}), 200
 
