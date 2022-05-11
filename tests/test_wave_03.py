@@ -132,7 +132,7 @@ def test_mark_complete_missing_task(client):
     # *****************************************************************
     # **Complete test with assertion about response body***************
     # *****************************************************************
-    assert response_body == {"details": "No task with id: 1"}
+    assert response_body == {"details": "No model data with id: 1"}
 
 
 # @pytest.mark.skip(reason="No way to test this feature yet")
@@ -148,7 +148,7 @@ def test_mark_incomplete_missing_task(client):
     # *****************************************************************
     # **Complete test with assertion about response body***************
     # *****************************************************************
-    assert response_body == {"details": "No task with id: 1"}
+    assert response_body == {"details": "No model data with id: 1"}
 
 
 # Let's add this test for creating tasks, now that

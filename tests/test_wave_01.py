@@ -65,7 +65,7 @@ def test_get_task_not_found(client):
     # **Complete test with assertion about response body***************
     # *****************************************************************
 
-    assert response_body == {"details": "No task with id: 1"}
+    assert response_body == {"details": "No model data with id: 1"}
 
 # @pytest.mark.skip(reason="No way to test this feature yet")
 def test_create_task(client):
@@ -136,7 +136,7 @@ def test_update_task_not_found(client):
     # *****************************************************************
     # **Complete test with assertion about response body***************
     # *****************************************************************
-    assert response_body == {"details": "No task with id: 1"}
+    assert response_body == {"details": "No model data with id: 1"}
 
 
 # @pytest.mark.skip(reason="No way to test this feature yet")
@@ -169,7 +169,7 @@ def test_delete_task_not_found(client):
     # *****************************************************************
 
     assert Task.query.all() == []
-    assert response_body == {"details": "No task with id: 1"}
+    assert response_body == {"details": "No model data with id: 1"}
 
 
 # @pytest.mark.skip(reason="No way to test this feature yet")
