@@ -54,6 +54,28 @@ def replace_task(task_id):
     return jsonify({"task": task.to_dict()}), 200
 
 
+@task_bp.route("/<task_id>/mark_complete", methods=["PATCH"])
+def update_task_complete(task_id):
+    task = get_task_by_id(task_id)
+
+    task.mark_completed()
+
+    db.session.commit()
+
+    return jsonify({"task": task.to_dict()}), 200
+
+
+@task_bp.route("/<task_id>/mark_incomplete", methods=["PATCH"])
+def update_task_incomplete(task_id):
+    task = get_task_by_id(task_id)
+
+    task.mark_incompleted()
+
+    db.session.commit()
+
+    return jsonify({"task": task.to_dict()}), 200
+
+
 @task_bp.route("/<task_id>", methods=["DELETE"])
 def delete_task(task_id):
     task = get_task_by_id(task_id)

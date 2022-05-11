@@ -1,5 +1,5 @@
 from app import db
-
+from sqlalchemy.sql import func
 
 class Task(db.Model):
     task_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -34,3 +34,9 @@ class Task(db.Model):
         for key in ["title", "description", "completed_at"]:
             if key in patch_keys:
                 setattr(self, key, data_dict[key])
+    
+    def mark_completed(self):
+        self.completed_at = func.now()
+    
+    def mark_incompleted(self):
+        self.completed_at = None
