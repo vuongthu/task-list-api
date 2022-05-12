@@ -17,7 +17,7 @@ class Task(db.Model):
             description=self.description,
             is_complete=True if self.completed_at else False
         )
-        
+
         if self.goal_id:
             task_dict["goal_id"] = self.goal_id
         
@@ -32,9 +32,9 @@ class Task(db.Model):
         )
 
     def replace_details(self, data_dict):
-        self.title = data_dict["title"]
-        self.description = data_dict["description"]
-        self.completed_at = data_dict["completed_at"] if "completed_at" in data_dict else None
+        self.title=data_dict["title"]
+        self.description=data_dict["description"]
+        self.completed_at=data_dict["completed_at"] if "completed_at" in data_dict else None
 
     def mark_completed(self):
         self.completed_at = func.now()

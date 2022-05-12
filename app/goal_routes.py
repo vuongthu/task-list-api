@@ -63,7 +63,7 @@ def add_tasks_to_goal(goal_id):
     request_body = request.get_json()
 
     if "task_ids" not in request_body:
-        error_msg("task_ids field does not exist", 400)
+        error_msg("task_ids field required in request", 400)
 
     goal = get_model_by_id(Goal, goal_id)
 

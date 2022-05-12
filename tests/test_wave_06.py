@@ -117,3 +117,32 @@ def test_get_task_includes_goal_id(client, one_task_belongs_to_one_goal):
             "is_complete": False
         }
     }
+
+# Additional tests that I added
+
+def test_add_task_to_goal_returns_error_if_missing_task_ids_field(client):
+    response = client.post("goals/1/tasks", json={})
+    response_body = response.get_json()
+
+    assert response.status_code == 400
+    assert response_body == {"details": "task_ids field required in request"}
+
+
+def test_invalid_key_for_creating_task(client, one_task):
+    response = client.put("/tasks/1", json={
+        "titl": "Walk 2 miles every day",
+        "description": "Exercising habits",
+    })
+
+    response_body = response.get_json()
+
+    assert response.status_code == 400
+    assert response_body == {'details': "Missing key: 'title'"}
+
+
+def test_invalid_id_for_getting_task(client, one_task):
+    response = client.get("/tasks/foo")
+    response_body = response.get_json()
+
+    assert response.status_code == 400
+    assert response_body == {'details': "Invalid id: foo"}
