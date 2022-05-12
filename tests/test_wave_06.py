@@ -128,7 +128,7 @@ def test_add_task_to_goal_returns_error_if_missing_task_ids_field(client):
     assert response_body == {"details": "task_ids field required in request"}
 
 
-def test_invalid_key_for_creating_task(client, one_task):
+def test_invalid_key_for_updating_task(client, one_task):
     response = client.put("/tasks/1", json={
         "titl": "Walk 2 miles every day",
         "description": "Exercising habits",
