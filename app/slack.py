@@ -12,6 +12,6 @@ class SlackBot():
         self.token = os.environ.get("SLACK_API_TOKEN")
 
     def send_notification(self, text):
-        requests.post(SLACK_API_URL, headers={'Authorization': 'Bearer ' + self.token},
+        requests.post(SLACK_API_URL, headers={'Authorization': f"Bearer {self.token}"},
                       params={"channel": "task-notifications", "text": text})
 
