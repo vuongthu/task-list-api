@@ -1,5 +1,5 @@
 from app import db
-from sqlalchemy.sql import func
+from datetime import datetime
 
 
 class Task(db.Model):
@@ -16,6 +16,7 @@ class Task(db.Model):
             title=self.title,
             description=self.description,
             is_complete=True if self.completed_at else False
+            # is_complete = bool(self.completed_at) - this is using bool on it
         )
 
         if self.goal_id:
@@ -37,7 +38,8 @@ class Task(db.Model):
         self.completed_at=data_dict["completed_at"] if "completed_at" in data_dict else None
 
     def mark_completed(self):
-        self.completed_at = func.now()
+        # self.completed_at = func.now()
+        self.completed_at = datetime.utcnow()
 
     def mark_incompleted(self):
         self.completed_at = None

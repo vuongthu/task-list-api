@@ -71,6 +71,10 @@ def add_tasks_to_goal(goal_id):
         task = get_model_by_id(Task, task_id)
         task.goal_id = goal_id
     
+    # if we want to replace all current tasks with the new task being sent in
+    # instead of using the for loop, we could do this:
+    # goal.tasks = request_body["task_ids"]
+    
     db.session.commit()
 
     return jsonify(goal.list_tasks()), 200

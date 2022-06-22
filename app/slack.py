@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 import requests
 
-load_dotenv()
+# load_dotenv()
 
 SLACK_API_URL = "https://slack.com/api/chat.postMessage"
 

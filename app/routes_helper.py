@@ -16,6 +16,10 @@ def replace_model_safely(model, data_dict):
     except KeyError as err:
         error_msg(f"Missing key: {err}", 400)
 
+# Ansel's Comments on creating a custom Python context manager
+    with MissingKeyHandler():
+        model.replace_details(data_dict)
+
 
 def get_model_by_id(cls, id):
     try:
@@ -27,7 +31,7 @@ def get_model_by_id(cls, id):
     if model:
         return model
 
-    error_msg(f"No model data with id: {id}", 404)
+    error_msg(f"No {cls.__name__} data with id: {id}", 404)
 
 
 def error_msg(message, status_code):
