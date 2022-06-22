@@ -28,7 +28,7 @@ def get_all_tasks():
     elif sort_title_query == "desc":
         tasks = Task.query.order_by(Task.title.desc()).all()
     else:
-        tasks = Task.query.order_by("id").all()
+        tasks = Task.query.order_by(Task.task_id.asc()).all()
         
 
     task_list = [task.to_dict() for task in tasks]
