@@ -17,8 +17,8 @@ def replace_model_safely(model, data_dict):
         error_msg(f"Missing key: {err}", 400)
 
 # Ansel's Comments on creating a custom Python context manager
-    with MissingKeyHandler():
-        model.replace_details(data_dict)
+    # with MissingKeyHandler():
+    #     model.replace_details(data_dict)
 
 
 def get_model_by_id(cls, id):
